@@ -1,64 +1,109 @@
 package main.singlyLinkedList.real;
 
 public class SinglyLinkedList {
-    private Node akhir;
-    private Node awal;
-    private Node pembantu;
-    private int ukuran;
+    private Node last;
+    private Node first;
+    private Node assistant;
+    private int size;
 
     public SinglyLinkedList() {
-        this.ukuran = 0;
-        akhir = null;
-        awal = null;
+        this.size = 0;
+        last = null;
+        first = null;
     }
 
     public void add(int data) {
-        ukuran++;
-        pembantu = new Node(data);
-        if (ukuran > 1) {
-            akhir.next = pembantu;
-            akhir = pembantu;
+        size++;
+        assistant = new Node(data);
+        if (size > 1) {
+            last.next = assistant;
+            last = assistant;
         } else {
-            awal = pembantu;
-            akhir = pembantu;
+            first = assistant;
+            last = assistant;
         }
     }
 
-    public void removeLast() {
-        if (awal == null) {
+    public void addFirst(int data) {
+        if (first == null) {
+            add(data);
+        }
+
+        size++;
+        assistant = new Node(data);
+        assistant.next = first;
+        first = assistant;
+    }
+
+    public void addLast(int data) {
+        if (first == null) {
+            add(data);
+        }
+
+        size++;
+        assistant = new Node(data);
+        last.next = assistant;
+        last = assistant;
+    }
+
+    public void addAtIndex(int index, int data) {
+        if (index == 0) {
+            addFirst(data);
             return;
         }
 
-        if (awal.next != null) {
-            ukuran--;
-            pembantu = awal;
-            for (int i = 0; i < --ukuran; i++) {
-                pembantu = pembantu.next;
+        if (index == size - 1) {
+            addLast(data);
+            return;
+        }
+
+        size++;
+        Node newNode = new Node(data);
+        assistant = first;
+
+        for (int i = 0; i < index - 1; i++) {
+            assistant = assistant.next;
+        }
+
+        newNode = assistant.next;
+        assistant.next = newNode;
+    }
+
+    public void removeLast() {
+        if (first == null) {
+            return;
+        }
+
+        if (first.next != null) {
+            size--;
+            assistant = first;
+            for (int i = 0; i < size - 1; i++) {
+                assistant = assistant.next;
             }
-            pembantu.next = null;
-            akhir = pembantu;
+            assistant.next = null;
+            last = assistant;
         } else {
-            ukuran = 0;
-            awal = akhir = pembantu = null;
+            size = 0;
+            first = last = assistant = null;
         }
     }
 
     public void removeFirst() {
-        if (awal == null) {
+        if (first == null) {
             return;
         }
 
-        if (awal.next != null) {
-            ukuran--;
-            awal = awal.next;
+        if (first.next != null) {
+            size--;
+            first = first.next;
         } else {
-            ukuran = 0;
-            awal = akhir = pembantu = null;
+            size = 0;
+            first = last = assistant = null;
         }
     }
 
     public void removeAtIndex(int index) {
-        if (awal == null) {
+        if (first == null) {
             return;
         }
 
@@ -66,51 +111,46 @@ public class SinglyLinkedList {
             removeFirst();
             return;
         }
-        
-        if (index == ukuran - 1) {
+
+        if (index == size - 1) {
             removeLast();
             return;
         }
 
-        pembantu = awal;
-        Node before = null, after = null;
-        for (int i = 0; i <= index; i++) {
-            if (i == index - 1) {
-                before = pembantu;
-            } else if (i == index) {
-                after = pembantu;
-            }
-            pembantu = pembantu.next;
+        assistant = first;
+        for (int i = 0; i < index - 1; i++) {
+            assistant = assistant.next;
         }
 
-        after.next = null;
-        before.next = pembantu;
-        ukuran--;
+        Node selectedNode = assistant.next;
+        assistant.next = selectedNode.next;
+        selectedNode.next = null;
+        size--;
     }
 
     public int getLast() {
-        if (akhir == null) {
+        if (last == null) {
             return 0;
         }
 
-        int data = akhir.data;
+        int data = last.data;
         removeLast();
         return data;
     }
 
     public int getFirst() {
-        if (awal == null) {
+        if (first == null) {
             return 0;
         }
 
-        int data = awal.data;
+        int data = first.data;
         removeFirst();
         return data;
     }
 
     public int getAtIndex(int index) {
 
-        if (awal == null) {
+        if (first == null) {
             return 0;
         }
 
@@ -118,17 +158,17 @@ public class SinglyLinkedList {
             return getFirst();
         }
 
-        if (index == ukuran - 1) {
+        if (index == size - 1) {
             return getLast();
         }
 
-        pembantu = awal;
+        assistant = first;
         int hasil = 0;
         for (int i = 0; i <= index; i++) {
             if (i == index) {
-                hasil = pembantu.data;
+                hasil = assistant.data;
             }
-            pembantu = pembantu.next;
+            assistant = assistant.next;
         }
 
         removeAtIndex(index);
@@ -136,23 +176,23 @@ public class SinglyLinkedList {
     }
 
     public int peekLast() {
-        if (akhir == null) {
+        if (last == null) {
             return 0;
         }
 
-        return akhir.data;
+        return last.data;
     }
 
     public int peekFirst() {
-        if (awal == null) {
+        if (first == null) {
             return 0;
         }
 
-        return awal.data;
+        return first.data;
     }
 
     public int peekAtIndex(int index) {
-        if (awal == null) {
+        if (first == null) {
             return 0;
         }
 
@@ -160,42 +200,42 @@ public class SinglyLinkedList {
             return peekFirst();
         }
 
-        if (index == ukuran - 1) {
+        if (index == size - 1) {
             return peekLast();
         }
 
-        pembantu = awal;
+        assistant = first;
         int hasil = 0;
         for (int i = 0; i <= index; i++) {
             if (i == index) {
-                hasil = pembantu.data;
+                hasil = assistant.data;
             }
-            pembantu = pembantu.next;
+            assistant = assistant.next;
         }
 
         return hasil;
     }
 
-    public void addAtIndex(int index) {
-
-    }
-
-    public void printList() {
-        if (awal == null) {
-            System.out.println("[]");
+    @Override
+    public String toString() {
+        if (first == null) {
+            return "[]";
         }
 
-        System.out.print("[");
-        pembantu = awal;
-        boolean isFirst = true;
-        for (int i = 0; i < ukuran; i++) {
-            if (!isFirst) {
-                System.out.print(" ,");
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        assistant = first;
+
+        for (int i = 0; i < size; i++) {
+            sb.append(assistant.data);
+            if (i < size - 1) {
+                sb.append(", ");
             }
-            isFirst = false;
-            System.out.print(pembantu.data);
-            pembantu = pembantu.next;
+            assistant = assistant.next;
         }
-        System.out.println("]");
+        sb.append("]");
+
+        return sb.toString();
     }
+
 }
