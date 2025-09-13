@@ -1,20 +1,20 @@
-package main.doublyLinkedList;
+package main.tugas.playlist;
 
-public class DoublyLinkedList {
+public class DoublyPlaylist {
     private Node first;
     private Node last;
     private int size;
 
-    public DoublyLinkedList() {
+    public DoublyPlaylist() {
         this.size = 0;
     }
 
-    public void add(int data) {
-        addLast(data);
+    public void add(Music music) {
+        addLast(music);
     }
 
-    public void addFirst(int data) {
-        Node newNode = new Node(data);
+    public void addFirst(Music music) {
+        Node newNode = new Node(music);
         if (size == 0) {
             first = last = newNode;
         } else {
@@ -26,8 +26,8 @@ public class DoublyLinkedList {
 
     }
 
-    public void addLast(int data) {
-        Node newNode = new Node(data);
+    public void addLast(Music music) {
+        Node newNode = new Node(music);
         if (size == 0) {
             first = last = newNode;
         } else {
@@ -38,22 +38,22 @@ public class DoublyLinkedList {
         size++;
     }
 
-    public void addAtIndex(int index, int data) {
+    public void addAtIndex(int index, Music music) {
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException(String.format("Index %d is not available", index));
         }
 
         if (index == 0) {
-            addFirst(data);
+            addFirst(music);
             return;
         }
 
         if (index == size) {
-            addLast(data);
+            addLast(music);
             return;
         }
 
-        Node newNode = new Node(data);
+        Node newNode = new Node(music);
         Node current = _loopToIndex(index);
 
         newNode.next = current;
@@ -68,16 +68,14 @@ public class DoublyLinkedList {
     public void removeFirst() {
         if (size == 0) {
             return;
-        }
-
-        if (size == 1) {
+        } else if (size == 1) {
             first = last = null;
             size--;
+        } else {
+            first = first.next;
+            first.prev = null;
+            size--;
         }
-
-        first = first.next;
-        first.prev = null;
-        size--;
     }
 
     public void removeLast() {
@@ -115,21 +113,20 @@ public class DoublyLinkedList {
         size--;
     }
 
-    public boolean contain(int data) {
-
+    public boolean check(Music music) {
         switch (size) {
             case 0:
                 return false;
             case 1:
-                return first.data == data;
+                return first.music == music;
             case 2:
-                return (first.data == data) || (last.data == data);
+                return (first.music == music) || (last.music == music);
         }
 
         Node currentFirst = first;
         Node currentLast = last;
 
-        while (currentFirst.data != data && currentLast.data != data) {
+        while (currentFirst.music != music && currentLast.music != music) {
             if (currentFirst == currentLast) {
                 return false;
             }
@@ -145,11 +142,11 @@ public class DoublyLinkedList {
         return true;
     }
 
-    public int indexOf(int data) {
+    public int indexOf(Music music) {
         Node current = first;
 
         for (int i = 0; i < size; i++) {
-            if (current.data == data) {
+            if (current.music == music) {
                 return i;
             }
 
@@ -159,19 +156,19 @@ public class DoublyLinkedList {
         return -1;
     }
 
-    public int takeFirst() {
-        int result = first.data;
+    public Music takeFirst() {
+        Music result = first.music;
         removeFirst();
         return result;
     }
 
-    public int takeLast() {
-        int result = last.data;
+    public Music takeLast() {
+        Music result = last.music;
         removeLast();
         return result;
     }
 
-    public int getAtIndex(int index) {
+    public Music takeAtIndex(int index) {
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException(String.format("Index %d is not available", index));
         }
@@ -186,7 +183,7 @@ public class DoublyLinkedList {
 
         Node current = _loopToIndex(index);
 
-        int result = current.data;
+        Music result = current.music;
 
         current.next.prev = current.prev;
         current.prev.next = current.next;
@@ -195,17 +192,25 @@ public class DoublyLinkedList {
         return result;
     }
 
-    public int peekFirst() {
-        int result = first.data;
+    public Music peekFirst() {
+        if (size == 0) {
+            return null;
+        }
+
+        Music result = first.music;
         return result;
     }
 
-    public int peekLast() {
-        int result = last.data;
+    public Music peekLast() {
+        if (size == 0) {
+            return null;
+        }
+
+        Music result = last.music;
         return result;
     }
 
-    public int peekAtIndex(int index) {
+    public Music peekAtIndex(int index) {
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException(String.format("Index %d is not available", index));
         }
@@ -220,7 +225,7 @@ public class DoublyLinkedList {
 
         Node current = _loopToIndex(index);
 
-        return current.data;
+        return current.music;
     }
 
     public int length() {
@@ -258,12 +263,12 @@ public class DoublyLinkedList {
 
         Node current = first;
 
-        result.append(current.data);
+        result.append(current.music);
 
         while (current.next != null) {
             result.append(", ");
             current = current.next;
-            result.append(current.data);
+            result.append(current.music);
         }
 
         result.append("]");
