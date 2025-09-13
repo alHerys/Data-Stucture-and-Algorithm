@@ -1,11 +1,8 @@
 package main.singlyLinkedList.real;
 
-import java.util.LinkedList;
-
 public class Main {
     public static void main(String[] args) {
-        LinkedList linkedList = new LinkedList<>();
-        
+
         SinglyLinkedList example = new SinglyLinkedList();
 
         example.add(0);
@@ -15,14 +12,18 @@ public class Main {
         example.add(4);
         example.add(5);
 
-        example.printList();
+        System.out.println(example);
 
         example.addAtIndex(2, 7);
 
-        example.printList();
+        System.out.println(example);
+
+        System.out.println(example.getAtIndex(2));
+
+        System.out.println(example);
 
         example.removeAtIndex(2);
 
-        example.printList();
+        System.out.println(example);
     }
 }

@@ -8,8 +8,6 @@ public class SinglyLinkedList {
 
     public SinglyLinkedList() {
         this.size = 0;
-        last = null;
-        first = null;
     }
 
     public void add(int data) {
@@ -27,6 +25,7 @@ public class SinglyLinkedList {
     public void addFirst(int data) {
         if (first == null) {
             add(data);
+            return;
         }
 
         size++;
@@ -38,6 +37,7 @@ public class SinglyLinkedList {
     public void addLast(int data) {
         if (first == null) {
             add(data);
+            return;
         }
 
         size++;
@@ -65,7 +65,7 @@ public class SinglyLinkedList {
             assistant = assistant.next;
         }
 
-        newNode = assistant.next;
+        newNode.next = assistant.next;
         assistant.next = newNode;
     }
 
@@ -224,17 +224,17 @@ public class SinglyLinkedList {
 
         StringBuilder sb = new StringBuilder();
         sb.append("[");
-        assistant = first;
 
-        for (int i = 0; i < size; i++) {
+        assistant = first;
+        while (assistant != null) {
             sb.append(assistant.data);
-            if (i < size - 1) {
+            if (assistant.next != null) {
                 sb.append(", ");
             }
             assistant = assistant.next;
         }
-        sb.append("]");
 
+        sb.append("]");
         return sb.toString();
     }
 
