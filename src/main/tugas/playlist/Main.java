@@ -9,6 +9,7 @@ public class Main {
         int pilihan = 0;
         // Contoh
         System.out.println("""
+
                 ╔═══════════════════════════════════════╗
                 ║         Management Playlist           ║
                 ╚═══════════════════════════════════════╝
@@ -22,7 +23,7 @@ public class Main {
             pilihan = scan.nextInt();
 
             if (pilihan == 1) {
-                
+
             } else if (pilihan == 2) {
 
             } else if (pilihan == 3) {
