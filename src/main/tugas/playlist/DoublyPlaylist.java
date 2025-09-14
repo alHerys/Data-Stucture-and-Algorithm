@@ -218,7 +218,7 @@ public class DoublyPlaylist {
     }
 
     public void selectMusic() {
-
+        
     }
 
     public void nextMusic() {
@@ -257,7 +257,7 @@ public class DoublyPlaylist {
             number++;
         }
 
-        // Footer Tabel
+        
         sb.append("╚═════╩══════════════════════════════════╩════════════════════╩══════════════════════╝\n");
 
         return sb.toString();
