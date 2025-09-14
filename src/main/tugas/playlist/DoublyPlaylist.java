@@ -248,7 +248,7 @@ public class DoublyPlaylist {
         Node current = first;
         int number = 1;
         while (current != null) {
-            sb.append(String.format("║ %-3d. ║ %-32s ║ %-18s ║ %-20s ║\n",
+            sb.append(String.format("║ %-3d ║ %-32s ║ %-18s ║ %-20s ║\n",
                     number,
                     current.music.getTitle(),
                     current.music.getArtist(),
