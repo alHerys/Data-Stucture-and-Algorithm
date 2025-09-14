@@ -7,6 +7,9 @@ public class Main {
         DoublyPlaylist playlist = new DoublyPlaylist();
         Scanner scan = new Scanner(System.in);
         int pilihan = 0;
+        String judul = "";
+        String artis = "";
+        String genre = "";
 
         System.out.println("""
         ╔════════════════════════════════════════════════════════════════════════════════════╗
@@ -22,17 +25,28 @@ public class Main {
             System.out.println("[3] Keluar");
             System.out.print("Pilihan (1/2/3): ");
             pilihan = scan.nextInt();
+            scan.nextLine();
 
             if (pilihan == 1) {
 
-            } else if (pilihan == 2) {
+                System.out.print("Silahkan masukkan judul lagu: ");
+                judul = scan.nextLine();
+                System.out.print("Silahkan masukkan nama artis: ");
+                artis = scan.nextLine();
+                System.out.print("Silahkan masukkan nama genre: ");
+                genre = scan.nextLine();
 
+                Music music = new Music(judul, artis, genre);
+                playlist.add(music);
+
+            } else if (pilihan == 2) {
+                System.out.println(playlist);
             } else if (pilihan == 3) {
                 break;
             } else {
                 System.out.println("Pilihan tidak valid");
             }
-            
+
         } while (true);
 
         scan.close();

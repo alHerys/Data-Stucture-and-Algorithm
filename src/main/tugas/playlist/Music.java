@@ -3,10 +3,12 @@ package main.tugas.playlist;
 public class Music {
     private String title;
     private String artist;
+    private String genre;
 
-    public Music(String title, String artist) {
+    public Music(String title, String artist, String genre) {
         this.title = title;
         this.artist = artist;
+        this.genre = genre;
     }
 
     @Override
@@ -20,5 +22,9 @@ public class Music {
 
     public String getArtist() {
         return artist;
+    }
+
+    public String getGenre() {
+        return genre;
     }
 }

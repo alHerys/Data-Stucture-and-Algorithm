@@ -218,11 +218,11 @@ public class DoublyPlaylist {
     }
 
     public void selectMusic() {
-        
+
     }
 
     public void nextMusic() {
-        
+
     }
 
     public void prevMusic() {
@@ -232,24 +232,35 @@ public class DoublyPlaylist {
     @Override
     public String toString() {
         if (size == 0) {
-            return "[]";
+            return "╔═══════════════════════════════════════╗\n" +
+                    "║              PLAYLIST KOSONG              ║\n" +
+                    "╚═══════════════════════════════════════╝";
         }
 
-        StringBuilder result = new StringBuilder();
-        result.append("[");
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("╔════════════════════════════════════════════════════════════════════════════════════╗\n");
+        sb.append("║                                    MY PLAYLIST                                     ║\n");
+        sb.append("╠═════╦══════════════════════════════════╦════════════════════╦══════════════════════╣\n");
+        sb.append("║ No. ║            Judul                 ║     Nama Artis     ║        Genre         ║\n");
+        sb.append("╠═════╬══════════════════════════════════╬════════════════════╬══════════════════════╣\n");
 
         Node current = first;
-
-        result.append(current.music);
-
-        while (current.next != null) {
-            result.append(", ");
+        int number = 1;
+        while (current != null) {
+            sb.append(String.format("║ %-3d. ║ %-32s ║ %-18s ║ %-20s ║\n",
+                    number,
+                    current.music.getTitle(),
+                    current.music.getArtist(),
+                    current.music.getGenre()));
             current = current.next;
-            result.append(current.music);
+            number++;
         }
 
-        result.append("]");
-        return result.toString();
+        // Footer Tabel
+        sb.append("╚═════╩══════════════════════════════════╩════════════════════╩══════════════════════╝\n");
+
+        return sb.toString();
     }
 
     private Node _loopToIndex(int index) {
