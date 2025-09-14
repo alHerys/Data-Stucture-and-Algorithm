@@ -57,14 +57,23 @@ public class Main {
                     playlist.addLast(music);
                     System.out.println("Lagu berhasil ditambahkan di akhir!\n");
                 } else if (subPilihan.equals("3")) {
+                    if (!playlist.isEmpty()) {
+                        System.out.println("\n.:: Daftar Lagu Saat Ini ::.");
+                        System.out.println(playlist);
+                    } else {
+                        System.out.println("\nPlaylist kosong. Lagu akan ditambahkan sebagai pertama.\n");
+                    }
+
                     System.out.print("Masukkan posisi urutan: ");
                     try {
-                        int index = Integer.parseInt(scan.nextLine());
+                        int posisi = Integer.parseInt(scan.nextLine());
+                        int index = posisi - 1;
                         playlist.addAtIndex(index, music);
-                        System.out.println("Lagu berhasil ditambahkan di urutan ke-" + index + "!\n");
+                        System.out.println("Lagu berhasil ditambahkan di urutan ke-" + posisi + "!\n");
                     } catch (IndexOutOfBoundsException e) {
                         System.out.println("Index tidak valid!\n");
                     }
+
                 }
 
             } else if (pilihan.equals("2")) {
@@ -99,9 +108,6 @@ public class Main {
             } else {
                 System.out.println("Pilihan tidak valid\n");
             }
-
         } while (true);
-
-        scan.close();
     }
 }
