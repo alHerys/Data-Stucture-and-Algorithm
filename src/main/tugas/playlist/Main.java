@@ -7,7 +7,7 @@ public class Main {
         DoublyPlaylist playlist = new DoublyPlaylist();
         Scanner scan = new Scanner(System.in);
         int pilihan = 0;
-        // Contoh
+
         System.out.println("""
         ╔════════════════════════════════════════════════════════════════════════════════════╗
         ║                                    MY PLAYLIST                                     ║
@@ -32,6 +32,7 @@ public class Main {
             } else {
                 System.out.println("Pilihan tidak valid");
             }
+            
         } while (true);
 
         scan.close();

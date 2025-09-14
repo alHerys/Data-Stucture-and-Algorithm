@@ -193,42 +193,6 @@ public class DoublyPlaylist {
         return result;
     }
 
-    public Music peekFirst() {
-        if (size == 0) {
-            return null;
-        }
-
-        Music result = first.music;
-        return result;
-    }
-
-    public Music peekLast() {
-        if (size == 0) {
-            return null;
-        }
-
-        Music result = last.music;
-        return result;
-    }
-
-    public Music peekAtIndex(int index) {
-        if (index >= size || index < 0) {
-            throw new IndexOutOfBoundsException(String.format("Index %d is not available", index));
-        }
-
-        if (index == 0) {
-            return takeFirst();
-        }
-
-        if (index == size - 1) {
-            return takeLast();
-        }
-
-        Node current = _loopToIndex(index);
-
-        return current.music;
-    }
-
     public int length() {
         return size;
     }
