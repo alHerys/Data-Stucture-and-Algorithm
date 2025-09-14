@@ -26,12 +26,19 @@ public class Main {
             pilihan = scan.nextLine();
 
             if (pilihan.equals("1")) {
-                System.out.println("\n-- Tambah Lagu --");
-                System.out.println("[1] Tambah di Awal");
-                System.out.println("[2] Tambah di Akhir");
-                System.out.println("[3] Tambah di Posisi Tertentu");
-                System.out.print("Pilih (1/2/3): ");
-                String subPilihan = scan.nextLine();
+                String subPilihan;
+                do {
+                    System.out.println("\n.:: Tambah Lagu ::.");
+                    System.out.println("[1] Tambah di Awal");
+                    System.out.println("[2] Tambah di Akhir");
+                    System.out.println("[3] Tambah di Posisi Tertentu");
+                    System.out.print("Pilih (1/2/3): ");
+                    subPilihan = scan.nextLine();
+
+                    if (!subPilihan.equals("1") && !subPilihan.equals("2") && !subPilihan.equals("3")) {
+                        System.out.println("Pilihan tidak valid, silahkan pilih 1, 2, atau 3.");
+                    }
+                } while (!subPilihan.equals("1") && !subPilihan.equals("2") && !subPilihan.equals("3"));
 
                 System.out.print("Masukkan judul lagu: ");
                 judul = scan.nextLine();
@@ -50,25 +57,30 @@ public class Main {
                     playlist.addLast(music);
                     System.out.println("Lagu berhasil ditambahkan di akhir!\n");
                 } else if (subPilihan.equals("3")) {
-                    System.out.print("Masukkan posisi index (mulai dari 0): ");
+                    System.out.print("Masukkan posisi urutan: ");
                     try {
                         int index = Integer.parseInt(scan.nextLine());
                         playlist.addAtIndex(index, music);
-                        System.out.println("Lagu berhasil ditambahkan di posisi " + index + "!\n");
+                        System.out.println("Lagu berhasil ditambahkan di urutan ke-" + index + "!\n");
                     } catch (IndexOutOfBoundsException e) {
                         System.out.println("Index tidak valid!\n");
                     }
-                } else {
-                    System.out.println("Pilihan tidak valid\n");
                 }
 
             } else if (pilihan.equals("2")) {
-                System.out.println(playlist);
+                if (playlist.isEmpty()) {
+                    System.out.println("Playlist kosong.\n");
+                } else {
+                    System.out.println("\n.:: Daftar Lagu ::.");
+                    System.out.println(playlist);
+                    System.out.println();
+                }
 
             } else if (pilihan.equals("3")) {
                 if (playlist.isEmpty()) {
                     System.out.println("Playlist kosong, tidak ada yang bisa dihapus.\n");
                 } else {
+                    System.out.println("\n.:: Daftar Lagu ::.");
                     System.out.println(playlist);
                     System.out.print("Masukkan nomor urut lagu yang ingin dihapus: ");
                     try {
@@ -81,6 +93,7 @@ public class Main {
                 }
 
             } else if (pilihan.equals("4")) {
+                System.out.println("Terima kasih telah menggunakan aplikasi playlist!");
                 break;
 
             } else {
