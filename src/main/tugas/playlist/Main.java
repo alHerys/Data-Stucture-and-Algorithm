@@ -50,11 +50,11 @@ public class Main {
                     playlist.addLast(music);
                     System.out.println("Lagu berhasil ditambahkan di akhir!\n");
                 } else if (subPilihan.equals("3")) {
-                    System.out.print("Masukkan posisi index (mulai dari 0): ");
+                    System.out.print("Masukkan nomor urut: ");
                     try {
-                        int index = Integer.parseInt(scan.nextLine());
+                        int index = Integer.parseInt(scan.nextLine()) - 1;
                         playlist.addAtIndex(index, music);
-                        System.out.println("Lagu berhasil ditambahkan di posisi " + index + "!\n");
+                        System.out.println("Lagu berhasil ditambahkan di urutan " + (index + 1) + "!\n");
                     } catch (IndexOutOfBoundsException e) {
                         System.out.println("Index tidak valid!\n");
                     }
