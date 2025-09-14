@@ -56,7 +56,7 @@ public class Main {
                 } else if (subPilihan.equals("2")) {
                     playlist.addLast(music);
                     System.out.println("Lagu berhasil ditambahkan di akhir!\n");
-                } else if (subPilihan.equals("3")) {
+                } else {
                     if (!playlist.isEmpty()) {
                         System.out.println("\n.:: Daftar Lagu Saat Ini ::.");
                         System.out.println(playlist);
@@ -109,5 +109,8 @@ public class Main {
                 System.out.println("Pilihan tidak valid\n");
             }
         } while (true);
+        scan.close();
     }
+
+
 }
