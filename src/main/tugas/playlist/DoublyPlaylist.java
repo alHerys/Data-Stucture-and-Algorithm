@@ -3,6 +3,7 @@ package main.tugas.playlist;
 public class DoublyPlaylist {
     private Node first;
     private Node last;
+    private Node selectedMusic;
     private int size;
 
     public DoublyPlaylist() {
@@ -250,6 +251,18 @@ public class DoublyPlaylist {
         }
         first = last = null;
         size = 0;
+    }
+
+    public void selectMusic() {
+        
+    }
+
+    public void nextMusic() {
+        
+    }
+
+    public void prevMusic() {
+
     }
 
     @Override
