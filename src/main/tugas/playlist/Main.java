@@ -9,12 +9,13 @@ public class Main {
         int pilihan = 0;
         // Contoh
         System.out.println("""
+        ╔════════════════════════════════════════════════════════════════════════════════════╗
+        ║                                    MY PLAYLIST                                     ║
+        ╠═════╦══════════════════════════════════╦════════════════════╦══════════════════════╣
+        ║ No. ║            Judul                 ║     Nama Artis     ║        Genre         ║
+        ╠═════╬══════════════════════════════════╬════════════════════╬══════════════════════╣
+        """);
 
-                ╔═══════════════════════════════════════╗
-                ║         Management Playlist           ║
-                ╚═══════════════════════════════════════╝
-                Silahkan pilih layanan sesuai kebutuhan:
-                """);
         do {
             System.out.println("[1] Tambah Lagu");
             System.out.println("[2] Lihat Daftar Lagu");
