@@ -11,11 +11,6 @@ public class Music {
         this.genre = genre;
     }
 
-    @Override
-    public String toString() {
-        return String.format("%s - %s", title, artist);
-    }
-
     public String getTitle() {
         return title;
     }

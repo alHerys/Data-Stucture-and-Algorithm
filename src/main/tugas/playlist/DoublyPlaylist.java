@@ -159,13 +159,11 @@ public class DoublyPlaylist {
 
     public Music takeFirst() {
         Music result = first.music;
-        removeFirst();
         return result;
     }
 
     public Music takeLast() {
         Music result = last.music;
-        removeLast();
         return result;
     }
 
@@ -185,10 +183,6 @@ public class DoublyPlaylist {
         Node current = _loopToIndex(index);
 
         Music result = current.music;
-
-        current.next.prev = current.prev;
-        current.prev.next = current.next;
-        size--;
 
         return result;
     }
@@ -218,7 +212,7 @@ public class DoublyPlaylist {
     }
 
     public void selectMusic() {
-        
+
     }
 
     public void nextMusic() {
