@@ -12,10 +12,10 @@ public class Main {
         String genre = "";
 
         System.out.println("""
-        ╔════════════════════════════════════════════════════════════════════════════════════╗
-        ║          .:: SELAMAT DATANG, SAHABAT MUSIK – NIKMATI IRAMA TANPA BATAS ::.         ║
-        ╚════════════════════════════════════════════════════════════════════════════════════╝
-        """);
+                ╔════════════════════════════════════════════════════════════════════════════════════╗
+                ║          .:: SELAMAT DATANG, SAHABAT MUSIK – NIKMATI IRAMA TANPA BATAS ::.         ║
+                ╚════════════════════════════════════════════════════════════════════════════════════╝
+                """);
 
         do {
             System.out.println("[1] Tambah Lagu");
@@ -52,11 +52,12 @@ public class Main {
                 } else if (subPilihan.equals("3")) {
                     System.out.print("Masukkan nomor urut: ");
                     try {
-                        int index = Integer.parseInt(scan.nextLine()) - 1;
+                        int index = Integer.parseInt(scan.nextLine());
+                        index--;
                         playlist.addAtIndex(index, music);
-                        System.out.println("Lagu berhasil ditambahkan di urutan " + (index + 1) + "!\n");
+                        System.out.println("Lagu berhasil ditambahkan!\n");
                     } catch (IndexOutOfBoundsException e) {
-                        System.out.println("Index tidak valid!\n");
+                        System.out.println("Nomor urut tidak valid!\n" + e);
                     }
                 } else {
                     System.out.println("Pilihan tidak valid\n");

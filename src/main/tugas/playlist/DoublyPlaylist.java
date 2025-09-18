@@ -3,7 +3,6 @@ package main.tugas.playlist;
 public class DoublyPlaylist {
     private Node first;
     private Node last;
-    private Node selectedMusic;
     private int size;
 
     public DoublyPlaylist() {
@@ -40,17 +39,17 @@ public class DoublyPlaylist {
     }
 
     public void addAtIndex(int index, Music music) {
-        if (index >= size || index < 0) {
-            throw new IndexOutOfBoundsException(String.format("Index %d is not available", index));
+        if (index < 0) {
+            throw new IndexOutOfBoundsException();
         }
-
-        if (index == 0) {
-            addFirst(music);
+        
+        if (index == size - 1) {
+            addLast(music);
             return;
         }
 
-        if (index == size) {
-            addLast(music);
+        if (index == 0 || index > 0) {
+            addFirst(music);
             return;
         }
 
@@ -169,7 +168,7 @@ public class DoublyPlaylist {
 
     public Music takeAtIndex(int index) {
         if (index >= size || index < 0) {
-            throw new IndexOutOfBoundsException(String.format("Index %d is not available", index));
+            throw new IndexOutOfBoundsException();
         }
 
         if (index == 0) {
@@ -192,11 +191,7 @@ public class DoublyPlaylist {
     }
 
     public boolean isEmpty() {
-        if (size > 0) {
-            return false;
-        } else {
-            return true;
-        }
+        return size == 0;
     }
 
     public void removeAll() {
@@ -209,18 +204,6 @@ public class DoublyPlaylist {
         }
         first = last = null;
         size = 0;
-    }
-
-    public void selectMusic() {
-
-    }
-
-    public void nextMusic() {
-
-    }
-
-    public void prevMusic() {
-
     }
 
     @Override
@@ -274,5 +257,4 @@ public class DoublyPlaylist {
 
         return node;
     }
-
 }
