@@ -73,7 +73,6 @@ public class CircularDoubleLinkedList {
         } while (curr != head);
     }
 
-    // lengkapi bagian ini
     public void cetak(String komentar) {
         System.out.println(komentar);
         NodeCDLL curr;
