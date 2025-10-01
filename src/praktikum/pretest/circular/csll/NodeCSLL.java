@@ -1,4 +1,4 @@
-package praktikum.pretest.circular.sll;
+package praktikum.pretest.circular.csll;
 
 public class NodeCSLL {
     Object data;

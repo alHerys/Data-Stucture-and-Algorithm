@@ -1,4 +1,4 @@
-package praktikum.pretest.circular.dll;
+package praktikum.pretest.circular.cdll;
 
 public class CircularDoubleLinkedList {
     private NodeCDLL head;

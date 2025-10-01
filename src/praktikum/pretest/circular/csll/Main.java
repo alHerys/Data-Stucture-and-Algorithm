@@ -1,4 +1,4 @@
-package praktikum.pretest.circular.sll;
+package praktikum.pretest.circular.csll;
 
 /**
  * Ini dibuat dengan Claude AI untuk memaksimalkan proses test case CSLL
