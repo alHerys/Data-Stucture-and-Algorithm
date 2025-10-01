@@ -287,5 +287,4 @@ public class DoublyLinkedList {
 
         return node;
     }
-
 }

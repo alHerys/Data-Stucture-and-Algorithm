@@ -1,7 +1,6 @@
 package praktikum.pretest.sll;
 
 public class Main {
-
     public static void main(String[] args) {
         // Membuat objek list yang akan digunakan di semua method pengujian
         SLL<Mahasiswa> list = new SLL<>();
