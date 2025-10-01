@@ -1,8 +1,5 @@
 package praktikum.pretest.circular.csll;
 
-/**
- * Ini dibuat dengan Claude AI untuk memaksimalkan proses test case CSLL
- */
 public class Main {
     public static void main(String[] args) {
         System.out.println("=".repeat(70));
