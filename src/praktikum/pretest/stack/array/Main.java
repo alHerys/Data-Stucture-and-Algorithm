@@ -4,14 +4,15 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        // Membuat NewStackArray dengan kapasitas 5
-        NewStackArray stack = new NewStackArray(5);
         Scanner scan = new Scanner(System.in);
         boolean keluar = false;
 
         System.out.println("\n=========================================");
         System.out.println("| Selamat Datang di Program Stack Array |");
         System.out.println("=========================================");
+
+        System.out.print("Silahkan masukkan ukuran stack anda: ");
+        NewStackArray stack = new NewStackArray(scan.nextInt());
 
         while (!keluar) {
             System.out.println("\n1. Push");
