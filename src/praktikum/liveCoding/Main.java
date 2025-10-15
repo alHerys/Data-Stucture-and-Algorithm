@@ -1,176 +1,152 @@
 package praktikum.liveCoding;
 import java.util.*;
 
-class Song {
-    String title;
-    Song next;
-    Song prev;
+class Light{
+    String color;
+    Light next;
     
-    public Song(String title) {
-        this.title = title;
+    public Light(String color) {
+        this.color = color;
         this.next = null;
-        this.prev = null;
     }
 }
 
-class Playlist {
-    private Song head;
-    private Song tail;
+class TrafficLightSystem {
+    private Light head;
+    private Light current;
     
-    public Playlist() {
+    public TrafficLightSystem() {
         head = null;
-        tail = null;
+        current = null;
     }
     
-    public void addSong(String title){
-        Song newSong = new Song(title);
+    public void addLight(String color) {
+        Light newLight = new Light(color);
+        newLight.next = newLight;
         
         if (head == null) {
-            head = tail = newSong;
+            head = newLight;
         } else {
-            newSong.prev = tail;
-            tail.next = newSong;
-            tail = newSong;
+            Light temp = head;
+            
+            while (temp.next != head) {
+                temp = temp.next;
+            }
+            
+            temp.next = newLight;
+            newLight.next = head;
         }
     }
     
-    public void playFoward() {
+    public void currentLight() {
         if (head == null) {
             System.out.println("EMPTY");
             return;
-        }
+        } 
         
-        Song curr = head;
-        while (curr != null) {
-            if (curr.next == null) {
-                System.out.println(curr.title);
-            } else {
-                System.out.print(curr.title + " - ");
-            }
-            curr = curr.next;
-        }
+        if (current == null){
+            current = head;
+        } 
+        
+        System.out.println(current.color);
     }
     
-    public void playBackward() {
+    public void nextLight(int steps) {
         if (head == null) {
-            System.out.println("EMPTY");
             return;
         }
         
-        Song curr = tail;
-        while (curr != null) {
-            if (curr.prev == null) {
-                System.out.println(curr.title);
-            } else {
-                System.out.print(curr.title + " - ");
-            }
-            curr = curr.prev;
+        if (current == null) {
+            current = head;
         }
+        
+        for (int i = 0; i < steps; i++) {
+            current = current.next;
+        }
+        
+        System.out.println(current.color);
     }
     
-    public void deleteSong(String title) {
+    public void removeLight(String color) {
         if (head == null) {
             System.out.println("NOT_FOUND");
             return;
         }
         
-        if (head == tail && head.title.equals(title)) {
-            head = tail = null;
-            System.out.println(title + " DELETED");
-            return;
-        }
+        Light prev, temp;
+        prev = null;
+        temp = head;
         
-        if (head.title.equals(title)) {
-            head = head.next;
-            head.prev = null;
-            System.out.println(title + " DELETED");
-            return;
-        }
+        boolean found = false;
         
-        if (tail.title.equals(title)) {
-            tail = tail.prev;
-            tail.next = null;
-            System.out.println(title + " DELETED");
-            return;
-        }
-        
-        Song curr = head;
-        while (curr != null) {
-            if (curr.title.equals(title)) {
-                curr.prev.next = curr.next;
-                curr.next.prev = curr.prev;
-                System.out.println(title + " DELETED");
-                return;
+        do {
+            if (temp.color.equals(color)) {
+                found = true;
+            } else {
+                prev = temp;
+                temp = temp.next;
             }
-            curr = curr.next;
-        }
-        System.out.println("NOT_FOUND");
-    }
-    
-    public void shuffle() {
-        if (head == tail || head.next == null) {
-            return;
-        }
+        } while (!found && temp != head);
         
-        Song curr = head;
-        Song prev = null;
-        while (curr != null) {
-            prev = curr.prev;
-            curr.prev = curr.next;
-            curr.next = prev;
-            curr = curr.prev;
+        if (found) {
+            
+            if (current != null && current.color.equals(color)) {
+                current = current.next;
+            }
+            
+            Light tail = head;
+            while (tail.next != head) {
+                tail = tail.next;
+            }
+            
+            if (head.next == head) {
+                head = tail = null;
+            } else if (prev == null) {
+                head = head.next;
+                tail.next = head;
+                
+                
+            } else {
+                if (tail == temp) {
+                    tail = prev;
+                }
+                prev.next = temp.next;
+            }
+            
+            System.out.println(temp.color + " REMOVED");
+        } else {
+            System.out.println("NOT_FOUND");
         }
-        
-        Song temp = head;
-        head = tail;
-        tail = temp;
     }
 }
 
-public class Main {
+public class Main{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        TrafficLightSystem system = new TrafficLightSystem();
         
-        Playlist playlist = new Playlist();
-        
-        while (sc.hasNextLine()) {
+        while(sc.hasNextLine()) {
             String input = sc.nextLine().trim();
             
-            if (input.equals("")) continue;
-            if (input.startsWith("ADD ")) {
-                String title = input.substring(4);
-                playlist.addSong(title);
-            } else if (input.equals("PLAY_FOWARD")) {
-                playlist.playFoward();
-            } else if (input.equals("PLAY_BACKWARD")) {
-                playlist.playBackward();
-            } else if (input.startsWith("DELETE ")) {
-                String title = input.substring(7);
-                playlist.deleteSong(title);
-            } else if (input.equals("SHUFFLE")) {
-                playlist.shuffle();
+            if(input.equals("")) continue;
+            
+            if(input.startsWith("ADD ")) {
+                String color = input.substring(4);
+                system.addLight(color);
+            } else if (input.equals("CURRENT")) {
+                system.currentLight();
+            } else if (input.startsWith("NEXT ")) {
+                int steps = Integer.parseInt(input.substring(5).trim());
+                system.nextLight(steps);
+            } else if (input.startsWith("REMOVE ")) {
+                String color = input.substring(7);
+                system.removeLight(color);
             } else if (input.equals("EXIT")) {
                 System.out.println("Program selesai");
                 break;
             }
         }
+        
         sc.close();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
