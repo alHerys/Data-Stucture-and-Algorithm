@@ -3,7 +3,7 @@ package main.binaryTree;
 public class BinaryTree {
     Node root;
 
-    public BinaryTree(){
+    public BinaryTree() {
         root = null;
     }
 

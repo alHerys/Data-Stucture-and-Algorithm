@@ -1,152 +1,72 @@
 package praktikum.liveCoding;
 import java.util.*;
 
-class Light{
-    String color;
-    Light next;
+class Node {
+    String url;
+    Node next;
     
-    public Light(String color) {
-        this.color = color;
+    public Node(String url) {
+        this.url = url;
         this.next = null;
     }
 }
 
-class TrafficLightSystem {
-    private Light head;
-    private Light current;
+class BrowserHistory {
+    private Node current;
     
-    public TrafficLightSystem() {
-        head = null;
-        current = null;
-    }
-    
-    public void addLight(String color) {
-        Light newLight = new Light(color);
-        newLight.next = newLight;
-        
-        if (head == null) {
-            head = newLight;
-        } else {
-            Light temp = head;
-            
-            while (temp.next != head) {
-                temp = temp.next;
-            }
-            
-            temp.next = newLight;
-            newLight.next = head;
-        }
-    }
-    
-    public void currentLight() {
-        if (head == null) {
-            System.out.println("EMPTY");
-            return;
-        } 
-        
-        if (current == null){
-            current = head;
-        } 
-        
-        System.out.println(current.color);
-    }
-    
-    public void nextLight(int steps) {
-        if (head == null) {
-            return;
-        }
+    public void visit(String url) {
+        Node newNode = new Node(url);
         
         if (current == null) {
-            current = head;
+            current = newNode;
+        } else {
+            newNode.next = current;
+            current = newNode;
         }
-        
-        for (int i = 0; i < steps; i++) {
-            current = current.next;
-        }
-        
-        System.out.println(current.color);
     }
     
-    public void removeLight(String color) {
-        if (head == null) {
-            System.out.println("NOT_FOUND");
-            return;
-        }
-        
-        Light prev, temp;
-        prev = null;
-        temp = head;
-        
-        boolean found = false;
-        
-        do {
-            if (temp.color.equals(color)) {
-                found = true;
-            } else {
-                prev = temp;
-                temp = temp.next;
-            }
-        } while (!found && temp != head);
-        
-        if (found) {
-            
-            if (current != null && current.color.equals(color)) {
-                current = current.next;
-            }
-            
-            Light tail = head;
-            while (tail.next != head) {
-                tail = tail.next;
-            }
-            
-            if (head.next == head) {
-                head = tail = null;
-            } else if (prev == null) {
-                head = head.next;
-                tail.next = head;
-                
-                
-            } else {
-                if (tail == temp) {
-                    tail = prev;
-                }
-                prev.next = temp.next;
-            }
-            
-            System.out.println(temp.color + " REMOVED");
+    public void back() {
+        if (current == null || current.next == null) {
+            System.out.println("EMPTY");
         } else {
-            System.out.println("NOT_FOUND");
+            current = current.next;
+            System.out.println("Undo to: " + current.url);
+        }
+    }
+    
+    public void currentPage() {
+        if (current == null) {
+            System.out.println("EMPTY");
+        } else {
+            System.out.println(current.url);
         }
     }
 }
 
-public class Main{
+public class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        TrafficLightSystem system = new TrafficLightSystem();
+        Scanner scan = new Scanner(System.in);
+        BrowserHistory browserHistory = new BrowserHistory();
         
-        while(sc.hasNextLine()) {
-            String input = sc.nextLine().trim();
+        String input;
+        while(scan.hasNextLine()) {
+            input = scan.nextLine().trim();
             
             if(input.equals("")) continue;
             
-            if(input.startsWith("ADD ")) {
-                String color = input.substring(4);
-                system.addLight(color);
+            if(input.startsWith("VISIT ")) {
+                String url = input.substring(6);
+                browserHistory.visit(url);
             } else if (input.equals("CURRENT")) {
-                system.currentLight();
-            } else if (input.startsWith("NEXT ")) {
-                int steps = Integer.parseInt(input.substring(5).trim());
-                system.nextLight(steps);
-            } else if (input.startsWith("REMOVE ")) {
-                String color = input.substring(7);
-                system.removeLight(color);
+                browserHistory.currentPage();
+            } else if (input.equals("BACK")) {
+                browserHistory.back();
             } else if (input.equals("EXIT")) {
                 System.out.println("Program selesai");
                 break;
             }
         }
         
-        sc.close();
+        scan.close();
     }
 }
