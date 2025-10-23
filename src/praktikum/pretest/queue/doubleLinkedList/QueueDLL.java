@@ -42,7 +42,7 @@ public class QueueDLL<E> {
         return result;
     }
 
-    // Ini buat debug aja kak, buat print semua isi DLL nya
+    // Ini buat print semua isi DLL nya
     @Override
     public String toString() {
         if (head == null) {
