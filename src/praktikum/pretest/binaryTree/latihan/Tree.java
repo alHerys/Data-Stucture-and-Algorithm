@@ -1,4 +1,4 @@
-package praktikum.pretest.binaryTree;
+package praktikum.pretest.binaryTree.latihan;
 
 import java.util.Random;
 
