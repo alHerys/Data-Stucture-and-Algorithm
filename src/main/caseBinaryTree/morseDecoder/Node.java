@@ -1,11 +1,11 @@
 package main.caseBinaryTree.morseDecoder;
 
 public class Node {
-    String data;
+    char data;
     Node kiri;
     Node kanan;
 
-    public Node(String data) {
+    public Node(char data) {
         this.data = data; 
         this.kiri = null;
         this.kanan = null;
