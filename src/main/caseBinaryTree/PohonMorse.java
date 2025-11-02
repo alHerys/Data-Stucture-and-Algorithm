@@ -3,72 +3,57 @@ package main.caseBinaryTree;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * Class untuk membangun struktur data Binary Tree untuk kode Morse.
+ */
 public class PohonMorse {
+    // Node root sebagai awal dari pohon.
     private static Node root;
+    // Urutan karakter morse sesuai standar level-order.
     private static String urutanPohonMorse = "ETIANMSURWDKGOHVF L PJ BXC YZQ";
 
+    // Static block untuk memastikan pohon dibuat sekali saat class dimuat.
     static {
         buatPohonMorse();
-        // pohonMorse = new Node(" ");
-
-        // // 1st Level
-        // pohonMorse.kiri = new Node("E");
-        // pohonMorse.kanan = new Node("T");
-
-        // // 2nd Level
-        // pohonMorse.kiri.kiri = new Node("I");
-        // pohonMorse.kiri.kanan = new Node("A");
-        // pohonMorse.kanan.kiri = new Node("N");
-        // pohonMorse.kanan.kanan = new Node("M");
-
-        // // 3rd Level
-        // pohonMorse.kiri.kiri.kiri = new Node("S");
-        // pohonMorse.kiri.kiri.kanan = new Node("U");
-        // pohonMorse.kiri.kanan.kiri = new Node("R");
-        // pohonMorse.kiri.kanan.kanan = new Node("W");
-        // pohonMorse.kanan.kiri.kiri = new Node("D");
-        // pohonMorse.kanan.kiri.kanan = new Node("K");
-        // pohonMorse.kanan.kanan.kiri = new Node("G");
-        // pohonMorse.kanan.kanan.kanan = new Node("O");
-
-        // // 4th Level
-        // pohonMorse.kiri.kiri.kiri.kiri = new Node("H");
-        // pohonMorse.kiri.kiri.kiri.kanan = new Node("V");
-        // pohonMorse.kiri.kiri.kanan.kiri = new Node("F");
-        // pohonMorse.kiri.kanan.kiri.kiri = new Node("L");
-        // pohonMorse.kiri.kanan.kanan.kiri = new Node("P");
-        // pohonMorse.kiri.kanan.kanan.kanan = new Node("J");
-        // pohonMorse.kanan.kiri.kiri.kiri = new Node("B");
-        // pohonMorse.kanan.kiri.kiri.kanan = new Node("X");
-        // pohonMorse.kanan.kiri.kanan.kiri = new Node("C");
-        // pohonMorse.kanan.kiri.kanan.kanan = new Node("Y");
-        // pohonMorse.kanan.kanan.kiri.kiri = new Node("Z");
-        // pohonMorse.kanan.kanan.kiri.kanan = new Node("Q");
     }
 
+    /**
+     * Membangun pohon morse menggunakan metode insert level-order dengan Queue.
+     */
     private static void buatPohonMorse() {
+        // Buat root dengan data kosong.
         root = new Node(' ');
 
+        // Siapkan queue untuk proses insert level-order.
         Queue<Node> nodes = new LinkedList<>();
         nodes.add(root);
 
+        // Loop untuk setiap karakter yang akan dimasukkan ke pohon.
         for (char huruf : urutanPohonMorse.toCharArray()) {
-
+            // Lihat node induk saat ini di antrian.
             Node nodeSekarang = nodes.peek();
 
+            // Jika anak kiri kosong, isi dengan huruf baru.
             if (nodeSekarang.kiri == null) {
-
                 nodeSekarang.kiri = new Node(huruf);
+                // Tambahkan node anak baru ke antrian.
                 nodes.add(nodeSekarang.kiri); 
 
             } else if (nodeSekarang.kanan == null) {
+                // Jika anak kiri sudah terisi, isi anak kanan.
                 nodeSekarang.kanan = new Node(huruf);
+                // Tambahkan node anak baru ke antrian.
                 nodes.add(nodeSekarang.kanan); 
+                // Hapus node induk dari antrian karena sudah punya 2 anak.
                 nodes.poll(); 
             }
         }
     }
 
+    /**
+     * Mengembalikan node root dari pohon morse.
+     * @return Node root.
+     */
     public static Node getRoot() {
         return root;
     }
