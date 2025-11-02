@@ -1,4 +1,4 @@
-package main.caseBinaryTree.morseDecoder;
+package main.caseBinaryTree;
 
 public class Node {
     char data;

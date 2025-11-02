@@ -1,14 +1,11 @@
 package main.caseBinaryTree;
 
-import main.caseBinaryTree.morseDecoder.PenerjemahMorse;
-import main.caseBinaryTree.morseEncoder.morseEncoder;
-
 public class Main {
     public static void main(String[] args) {
-        PenerjemahMorse penerjemahMorse = new PenerjemahMorse();
-        morseEncoder encoder = new morseEncoder();
+        MorseDecoder penerjemahMorse = new MorseDecoder();
+        MorseEncoder encoder = new MorseEncoder();
 
-        penerjemahMorse.decode("... --- ...");
-        encoder.encode("SOS");
+        penerjemahMorse.decode(".... . .-.. .-.. --- / .-- --- .-. .-.. -..");
+        encoder.encode("HELLO WORLD");
     }
 }

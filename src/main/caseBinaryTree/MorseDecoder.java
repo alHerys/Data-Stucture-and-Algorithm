@@ -1,6 +1,6 @@
-package main.caseBinaryTree.morseDecoder;
+package main.caseBinaryTree;
 
-public class PenerjemahMorse {
+public class MorseDecoder {
     private static Node root = PohonMorse.getRoot();
 
     public void decode(String morse) {
