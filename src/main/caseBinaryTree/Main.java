@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner niel = new Scanner(System.in);
-        MorseDecoder decoder = new MorseDecoder();
-        MorseEncoder encoder = new MorseEncoder();
+        MorseEncoder encoder = new MorseEncoder(); // Objek untuk mengubah Text ke morse
+        MorseDecoder decoder = new MorseDecoder(); // Objek untuk mengubah Morse ke teks
 
         int pilihan;
         do {
