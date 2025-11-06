@@ -1,9 +1,5 @@
 package praktikum.pretest.avl;
 
-/**
- * Kelas AVLT yang berisi logika untuk AVL Tree.
- * (Disimpan di file AVLT.java)
- */
 public class AVLT {
     private Node root;
 
