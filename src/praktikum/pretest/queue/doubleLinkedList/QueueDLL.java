@@ -3,15 +3,15 @@ package praktikum.pretest.queue.doubleLinkedList;
 import java.util.NoSuchElementException;
 
 public class QueueDLL<E> {
-    private Node<E> head; // Sebagai rear dari Queue
-    private Node<E> tail; // Sebagai front dari Queue
+    private NodeQueue<E> head; // Sebagai rear dari Queue
+    private NodeQueue<E> tail; // Sebagai front dari Queue
 
     /**
      * Menambahkan element pada queue pada node head
      * @param data -> data yang hendak disikan ke node head
      */
     public void enqueue(E data) {
-        Node<E> newNode = new Node<E>(data);
+        NodeQueue<E> newNode = new NodeQueue<E>(data);
         if (head == null) {
             head = tail = newNode;  
         } else {
@@ -42,6 +42,10 @@ public class QueueDLL<E> {
         return result;
     }
 
+    public boolean isEmpty() {
+        return head == null;
+    }
+
     // Ini buat print semua isi DLL nya
     @Override
     public String toString() {
@@ -52,7 +56,7 @@ public class QueueDLL<E> {
         StringBuilder result = new StringBuilder();
         result.append("[");
 
-        Node<E> current = head;
+        NodeQueue<E> current = head;
 
         result.append(current.data);
 

@@ -37,6 +37,7 @@ public class AVLT {
             root = new Node(dt, 1, null, null, null);
             return true;
         }
+
         // tree tidak kosong
         else {
             // mulai dari root
@@ -47,17 +48,20 @@ public class AVLT {
                 if (dt == temp.data) {
                     return false;
                 }
+                
                 // sisip dt di subtree pKiri
                 else if (dt < temp.data) {
                     prev = temp;
                     temp = temp.pKiri;
                 }
+                
                 // sisip dt di subtree pKanan
                 else {
                     prev = temp;
                     temp = temp.pKanan;
                 }
             }
+            
             // buat node baru
             temp = new Node(dt, 1, null, null, prev);
             if (dt < prev.data) {

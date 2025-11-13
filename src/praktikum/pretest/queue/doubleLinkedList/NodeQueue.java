@@ -1,11 +1,11 @@
 package praktikum.pretest.queue.doubleLinkedList;
 
-public class Node<E> {
+public class NodeQueue<E> {
     E data;
-    Node<E> next;
-    Node<E> prev;
+    NodeQueue<E> next;
+    NodeQueue<E> prev;
 
-    public Node(E data) {
+    public NodeQueue(E data) {
         this.data = data;
         this.next = null;
         this.prev = null;
