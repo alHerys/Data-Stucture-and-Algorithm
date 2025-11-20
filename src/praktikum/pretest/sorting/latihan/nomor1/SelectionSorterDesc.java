@@ -1,4 +1,4 @@
-package praktikum.pretest.sorting.latihan;
+package praktikum.pretest.sorting.latihan.nomor1;
 
 public class SelectionSorterDesc {
     int[] data = { 25, 27, 10, 8, 76, 21 };
