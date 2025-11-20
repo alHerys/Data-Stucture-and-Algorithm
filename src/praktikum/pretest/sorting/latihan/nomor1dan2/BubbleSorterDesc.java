@@ -7,7 +7,7 @@ public class BubbleSorterDesc {
     public void bubbleSortDesc() {
         int i, j, Max = 6, temp;
         for (i = 0; i < Max - 1; i++) {
-            System.out.println("Langkah " + (i + 1) + ":");
+            System.out.println("\nLangkah " + (i + 1) + ":");
             for (j = Max - 1; j > i; j--) {
 
                 // Perubahan yang terjadi di sini
@@ -21,7 +21,7 @@ public class BubbleSorterDesc {
             }
             System.out.println(data[j] + " index = " + (j + 1));
         }
-        System.out.println("Hasil akhir bubble sort descending:");
+        System.out.println("\nHasil akhir bubble sort descending:");
         for (i = 0; i <= 5; i++) {
             System.out.println(data[i] + " index: " + (i + 1));
         }

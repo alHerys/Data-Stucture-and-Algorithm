@@ -10,7 +10,7 @@ public class SelectionSorterDesc {
 
         for (j = 0; j < 6; j++) {
             jmax = 0;
-            System.out.println("Langkah " + (j + 1) + ":");
+            System.out.println("\nLangkah " + (j + 1) + ":");
             for (k = 1; k <= u; k++) {
 
                 // Perubahan disini
@@ -28,7 +28,7 @@ public class SelectionSorterDesc {
             for (i = 0; i <= 5; i++) {
                 System.out.println(data[i] + " index:" + (i + 1));
             }
-            System.out.println("Hasil akhir selection sort descending:");
+            System.out.println("\nHasil akhir selection sort descending:");
             for (i = 0; i <= 5; i++) {
                 System.out.println(data[i] + " index:" + (i + 1));
             }
