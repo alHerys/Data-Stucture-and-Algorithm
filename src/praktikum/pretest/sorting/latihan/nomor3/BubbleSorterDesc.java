@@ -1,21 +1,32 @@
-package praktikum.pretest.sorting.latihan.nomor1;
+package praktikum.pretest.sorting.latihan.nomor3;
 
 public class BubbleSorterDesc {
 
     int[] data = { 25, 27, 10, 8, 76, 21 };
 
     public void bubbleSortDesc() {
-        int i, j, Max = 6, temp;
+        int i, j;
+        int Max = data.length;
+        int temp;
+
+        int countPerbandingan = 0;
+        int countPergeseran = 0;
+
         for (i = 0; i < Max - 1; i++) {
             System.out.println("Langkah " + (i + 1) + ":");
             for (j = Max - 1; j > i; j--) {
 
-                // Perubahan yang terjadi di sini
+                // LATIHAN NOMOR 2: Menghitung jumlah perbandingan
+                countPerbandingan++;
+
+                // LATIHAN NOMOR 1: Perubahan yang terjadi di sini
                 // Mengubah tanda '<' menjadi '>' agar sorting dilakukan secara descending
                 if (data[j - 1] < data[j]) {
                     temp = data[j];
                     data[j] = data[j - 1];
                     data[j - 1] = temp;
+                    // LATIHAN NOMOR 2: Menghitung jumlah pergeseran
+                    countPergeseran++;
                 }
                 System.out.println(data[j] + " index = " + (j + 1));
             }
