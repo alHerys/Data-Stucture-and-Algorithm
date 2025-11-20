@@ -6,6 +6,7 @@ public class BubbleSorterDesc {
 
     public void bubbleSortDesc() {
         int i, j, Max = 6, temp;
+        
         for (i = 0; i < Max - 1; i++) {
             System.out.println("\nLangkah " + (i + 1) + ":");
             for (j = Max - 1; j > i; j--) {
